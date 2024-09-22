@@ -9,16 +9,26 @@ const Form = defineComponent({
       pageSize: 10, 
     })
 
+    function onDataChange(data) {
+      tableData.value = data
+    }
+
+    function onPageChange({ page, pageSize }) {
+      paging.value.page = page
+      paging.value.pageSize = pageSize
+    }
+
     return () => (
       <Table
-        columns={[
-          ['姓名', 'name'],
-          ['年龄', 'age'],
-          ['性别', 'sex']
-        ]}
         data={tableData.value}
         page={paging.value}
-        onDataChange={(value) => set(tableState.value, 'data', value)}
+        columns={[
+          { label: '姓名', key: 'name', render: () => (1) },
+          { label: '姓名', key: 'name', render: () => (1) },
+          { label: '姓名', key: 'name', render: () => (1) },
+        ]}
+        columnDefault={{ width: 100 }}
+        onDataChange={onDataChange}
         onPageChange={onPageChange}
       />
     )
